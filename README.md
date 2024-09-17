@@ -1,1 +1,1 @@
-# Mini_Message_Board
+Created a basic Express app using routes, controllers, and views, to build a mini message board. 
