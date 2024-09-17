@@ -3,34 +3,24 @@ const app = express();
 const indexRouter = require("./routes/indexRouter");
 const newRouter = require("./routes/newRouter");
 const path = require("node:path");
-const links = [
-    { href: "/", text: "Home"}, 
-    { href: "/new", text: "New Message"},
-];
-const messages = require("./data")
-//const users = ["Rose", "Cake", "Biff"];
+const messages = require("./data");
+
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
-
+// Set the views directory and view engine
 app.set("views", path.join(__dirname, "views"));
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
-app.use(express.urlencoded({ extended: true}));
+// Middleware to parse form data
+app.use(express.urlencoded({ extended: true }));
+
+// Define routes
 app.use("/new", newRouter);
-app.use("/", indexRouter);
+app.use("/", indexRouter);  // indexRouter should handle the root route
 
+const PORT = process.env.PORT || 3000;  // Make the port dynamic for production
 
-app.use((req, res, next) => {
-    next();
-});
-
-app.get("/", (req, res) => {
-    console.log("Root route accessed");
-    res.render("index", { title: "Mini Messageboard", messages: messages }) //,users: users });
-});
-
-const PORT = 3000;
-app.listen(PORT, () => 
-    {console.log(`My first Express app - listening on port ${PORT}!`)
+app.listen(PORT, () => {
+    console.log(`My first Express app - listening on port ${PORT}!`);
 });
