@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/new", newRouter);
 app.use("/", indexRouter);  // indexRouter should handle the root route
 
-const PORT = process.env.PORT || 3000;  // Make the port dynamic for production
+const PORT = process.env.PORT || 8080;  // Make the port dynamic for production
 
 app.listen(PORT, () => {
     console.log(`My first Express app - listening on port ${PORT}!`);
